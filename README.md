@@ -1,8 +1,12 @@
 # 校网图书馆爬虫
 
-##usage:
+## usage:
 `scrapy crawl diglibrary`
 
 
-##requirements
+## requirements
 scrapy
+
+
+## TODO
+* Error handler (use try except else)
