@@ -81,6 +81,20 @@ class LibrarySpider(CrawlSpider):
         item = response.meta['item']
         language_type = response.meta['language_type']
         if language_type == 'en':
+            row020 = response.xpath('/html/body/div/ul/li[contains(b,"020")]').extract()
+            if len(row020) > 0:
+                row020 = remove_tags(row020[0]).split('|')
+                for i in row020:
+                    if i[0] == 'a':
+                        if len(i) < 3:
+                            item['isbn'] = ''
+                        else:
+                            if i[2] == ' ':
+                                item['isbn'] = ''
+                            else:
+                                item['isbn'] = i[2:].split()[0].replace('-','')
+            else:
+                item['isbn'] = ''
             row245 = response.xpath('/html/body/div/ul/li[contains(b,"245")]').extract()[0].strip()
             row260 = response.xpath('/html/body/div/ul/li[contains(b,"260")]').extract()[0].strip()
             row093 = response.xpath('/html/body/div/ul/li[contains(b,"093")]').extract()[0].strip()
@@ -102,6 +116,20 @@ class LibrarySpider(CrawlSpider):
                     item['call_number'] = remove_tags(i[2:])
             return item
         elif language_type == 'zh':
+            row010 = response.xpath('/html/body/div/ul/li[contains(b,"010")]').extract()
+            if len(row010) > 0:
+                row010 = remove_tags(row010[0]).split('|')
+                for i in row010:
+                    if i[0] == 'a':
+                        if len(i) < 3:
+                            item['isbn'] = ''
+                        else:
+                            if i[2] == ' ':
+                                item['isbn'] = ''
+                            else:
+                                item['isbn'] = i[2:].split()[0].replace('-','')
+            else:
+                item['isbn'] = ''
             row200 = response.xpath('/html/body/div/ul/li[contains(b,"200")]').extract()[0].strip()
             row210 = response.xpath('/html/body/div/ul/li[contains(b,"210")]').extract()[0].strip()
             row905 = response.xpath('/html/body/div/ul/li[contains(b,"905")]').extract()[0].strip()

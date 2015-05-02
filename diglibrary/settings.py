@@ -30,5 +30,6 @@ DOWNLOADER_MIDDLEWARES = {
     'diglibrary.middleware.ErrorMonkeyMiddleware': 1,
 }
 
-LOG_LEVEL = 'INFO'
-#LOG_LEVEL = 'DEBUG'
+# LOG_LEVEL = 'INFO'
+# LOG_LEVEL = 'DEBUG'
+LOG_LEVEL = 'ERROR'

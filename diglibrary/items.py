@@ -19,3 +19,4 @@ class BookItem(scrapy.Item):
     call_number = scrapy.Field()
     marc_no = scrapy.Field()
     location = scrapy.Field()
+    isbn = scrapy.Field()
